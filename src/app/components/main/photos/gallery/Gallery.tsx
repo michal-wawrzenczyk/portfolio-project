@@ -13,5 +13,5 @@ export const GalleryContainer = styled.div`
 `;
 
 export const Gallery: React.FC = () => {
-  return <GalleryContainer>Gallery</GalleryContainer>;
+  return <GalleryContainer>All pictures</GalleryContainer>;
 };

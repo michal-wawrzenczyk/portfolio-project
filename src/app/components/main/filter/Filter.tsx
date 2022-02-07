@@ -10,7 +10,7 @@ export const FilterContainer = styled.nav`
   margin: 0 auto;
   padding: 1rem;
   background-color: whitesmoke;
-  height: 75px;
+  height: 50px;
 `;
 
 export const Filter: React.FC = () => {

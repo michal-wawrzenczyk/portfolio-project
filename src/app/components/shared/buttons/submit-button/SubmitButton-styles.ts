@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonLogIn = styled.button`
+export const SubmitButton = styled.button`
   font: inherit;
   padding: 0.5rem 1.5rem;
   border: 1px solid black;
