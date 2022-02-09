@@ -10,10 +10,12 @@ export const HomePageContainer = styled.div`
   flex: 1;
 `;
 
-export const HomePage: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <HomePageContainer>
       <Main />
     </HomePageContainer>
   );
 };
+
+export default HomePage;

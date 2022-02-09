@@ -1,29 +1,34 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useRoutes, Navigate } from 'react-router-dom';
 
 import { WEB_PATHS } from './paths';
 
 import { MainLayout } from '../app/layout/main';
-import { HomePage } from '../pages/HomePage';
-
 import { UniversalLayout } from '../app/layout/universal';
-import { LogIn } from '../pages/LogIn';
-import { SignUp } from '../pages/SignUp';
-import { Error404 } from '../pages/Error404';
-
 import { UserLayout } from '../app/layout/user';
-import { User } from '../pages/User';
+
+const LoadingPage =
+  (Component: React.ElementType) =>
+  (props: unknown): JSX.Element =>
+    (
+      <Suspense
+        fallback={
+          <div style={{ position: 'fixed', top: '50%', left: '50%' }}>
+            <p>Loading...</p>
+          </div>
+        }>
+        <Component {...props} />
+      </Suspense>
+    );
+
+const HomePage = LoadingPage(lazy(() => import('../pages/HomePage')));
+const LogIn = LoadingPage(lazy(() => import('../pages/LogIn')));
+const SignUp = LoadingPage(lazy(() => import('../pages/SignUp')));
+const User = LoadingPage(lazy(() => import('../pages/User')));
+const Error404 = LoadingPage(lazy(() => import('../pages/Error404')));
 
 export const Router: React.FC = () => {
   return useRoutes([
-    {
-      element: <UniversalLayout />,
-      children: [
-        { path: WEB_PATHS.page404, element: <Error404 /> },
-        { path: '*', element: <Navigate to={WEB_PATHS.page404} replace /> }
-      ]
-    },
-
     {
       path: WEB_PATHS.home,
       element: <MainLayout />,
@@ -34,7 +39,8 @@ export const Router: React.FC = () => {
       element: <UniversalLayout />,
       children: [
         { path: WEB_PATHS.logIn, element: <LogIn /> },
-        { path: WEB_PATHS.signUp, element: <SignUp /> }
+        { path: WEB_PATHS.signUp, element: <SignUp /> },
+        { path: WEB_PATHS.page404, element: <Error404 /> }
       ]
     },
 

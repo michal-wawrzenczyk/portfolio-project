@@ -1,5 +1,7 @@
 import React from 'react';
 
-export const LogIn: React.FC = () => {
+const LogIn: React.FC = () => {
   return <h1>Log In Page</h1>;
 };
+
+export default LogIn;
