@@ -5,7 +5,6 @@ export const MapContainer = styled.div`
   width: 50%;
   background-color: whitesmoke;
   text-align: center;
-  height: 100%;
 
   @media (max-width: 480px) {
     width: 100%;

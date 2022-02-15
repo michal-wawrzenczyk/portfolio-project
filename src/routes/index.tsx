@@ -25,6 +25,7 @@ const HomePage = LoadingPage(lazy(() => import('../pages/HomePage')));
 const LogIn = LoadingPage(lazy(() => import('../pages/LogIn')));
 const SignUp = LoadingPage(lazy(() => import('../pages/SignUp')));
 const User = LoadingPage(lazy(() => import('../pages/User')));
+const PhotoDetails = LoadingPage(lazy(() => import('../pages/PhotoDetails')));
 const Error404 = LoadingPage(lazy(() => import('../pages/Error404')));
 
 export const Router: React.FC = () => {
@@ -40,6 +41,7 @@ export const Router: React.FC = () => {
       children: [
         { path: WEB_PATHS.logIn, element: <LogIn /> },
         { path: WEB_PATHS.signUp, element: <SignUp /> },
+        { path: WEB_PATHS.photoDetails, element: <PhotoDetails /> },
         { path: WEB_PATHS.page404, element: <Error404 /> }
       ]
     },

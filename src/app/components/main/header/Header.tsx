@@ -1,13 +1,16 @@
 import React from 'react';
 // because we are going to write some JSX code here
-
 import styled from 'styled-components';
+import { Logo } from '../../header/logo';
+import { Navigation } from '../../header/navigation';
+import { LogOrSign } from '../../header/login-signup';
 
 export const HeaderContainer = styled.header`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 2rem;
   width: 100%;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
@@ -20,5 +23,11 @@ export const HeaderContainer = styled.header`
 // }
 
 export const Header: React.FC = () => {
-  return <HeaderContainer>Header + Nav</HeaderContainer>;
+  return (
+    <HeaderContainer>
+      <Logo />
+      <Navigation />
+      <LogOrSign />
+    </HeaderContainer>
+  );
 };

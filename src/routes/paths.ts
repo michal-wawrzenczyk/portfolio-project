@@ -3,6 +3,7 @@ export const WEB_PATHS = {
   logIn: '/log-in',
   signUp: '/sign-up',
   category: '/category',
+  photoDetails: '/details/:photoId',
   profile: '/profile/:id',
   page404: '/error-404',
   page500: '/error-500'

@@ -1,11 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PhotoList } from './PhotoList';
+import { DUMMY_PHOTOS } from '../../../mock/mock';
 
 export const GalleryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 50%;
   background-color: whitesmoke;
-  text-align: center;
-  height: 100%;
+
+  h3 {
+    margin-left: 1rem;
+  }
 
   @media (max-width: 480px) {
     width: 100%;
@@ -13,5 +19,10 @@ export const GalleryContainer = styled.div`
 `;
 
 export const Gallery: React.FC = () => {
-  return <GalleryContainer>All pictures</GalleryContainer>;
+  return (
+    <GalleryContainer>
+      <h3>All pictures:</h3>
+      <PhotoList photos={DUMMY_PHOTOS} />
+    </GalleryContainer>
+  );
 };
