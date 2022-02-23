@@ -1,11 +1,22 @@
 import React from 'react';
-import { LayoutContainer } from '../app/components/layout-container/container';
+import styled from 'styled-components';
+import { DetailsCard } from '../app/components/main/photos/gallery/DetailsCard';
+import { Map } from '../app/components/main/photos/map/Map';
+
+const PhotoDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  column-gap: 0.5rem;
+`;
 
 const PhotoDetails: React.FC = () => {
   return (
-    <LayoutContainer>
-      <h1>Photo Details:</h1>
-    </LayoutContainer>
+    <PhotoDetailsContainer>
+      <DetailsCard />
+      <Map />
+    </PhotoDetailsContainer>
   );
 };
 

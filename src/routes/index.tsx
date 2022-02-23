@@ -33,7 +33,10 @@ export const Router: React.FC = () => {
     {
       path: WEB_PATHS.home,
       element: <MainLayout />,
-      children: [{ path: WEB_PATHS.home, element: <HomePage /> }]
+      children: [
+        { path: WEB_PATHS.home, element: <HomePage /> },
+        { path: WEB_PATHS.photoDetails, element: <PhotoDetails /> }
+      ]
     },
 
     {
@@ -41,7 +44,6 @@ export const Router: React.FC = () => {
       children: [
         { path: WEB_PATHS.logIn, element: <LogIn /> },
         { path: WEB_PATHS.signUp, element: <SignUp /> },
-        { path: WEB_PATHS.photoDetails, element: <PhotoDetails /> },
         { path: WEB_PATHS.page404, element: <Error404 /> }
       ]
     },

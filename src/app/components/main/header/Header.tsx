@@ -1,9 +1,9 @@
 import React from 'react';
 // because we are going to write some JSX code here
 import styled from 'styled-components';
-import { Logo } from '../../header/logo';
-import { Navigation } from '../../header/navigation';
-import { LogOrSign } from '../../header/login-signup';
+import { Logo } from './logo';
+import { Navigation } from './navigation';
+import { LogOrSign } from './login-signup';
 
 export const HeaderContainer = styled.header`
   display: flex;

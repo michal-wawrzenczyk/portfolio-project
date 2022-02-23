@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavFilter } from './NavFilter';
 
 const NavContainer = styled.div`
   display: flex;
@@ -30,25 +30,7 @@ const NavContainer = styled.div`
 export const Navigation: React.FC = () => {
   return (
     <NavContainer>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/">Birds</NavLink>
-          </li>
-          <li>
-            <NavLink to="/">Mammals</NavLink>
-          </li>
-          <li>
-            <NavLink to="/">Reptiles</NavLink>
-          </li>
-          <li>
-            <NavLink to="/">Amphibians</NavLink>
-          </li>
-          <li>
-            <NavLink to="/">Insects</NavLink>
-          </li>
-        </ul>
-      </nav>
+      <NavFilter />
     </NavContainer>
   );
 };

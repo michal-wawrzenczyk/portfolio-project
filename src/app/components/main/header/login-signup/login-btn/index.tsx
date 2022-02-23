@@ -1,6 +1,6 @@
 import React from 'react';
-import { SubmitButton } from '../../../shared/buttons/submit-button/SubmitButton-styles';
-import { WEB_PATHS } from '../../../../../routes/paths';
+import { SubmitButton } from '../../../../shared/buttons/submit-button/SubmitButton-styles';
+import { WEB_PATHS } from '../../../../../../routes/paths';
 import { NavLink } from 'react-router-dom';
 
 export const LogIn: React.FC = () => {

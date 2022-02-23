@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PhotoList } from './PhotoList';
-import { DUMMY_PHOTOS } from '../../../mock/mock';
+// import { DUMMY_PHOTOS } from '../../../mock/mock';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../store/reducers/rootReducer';
 
 export const GalleryContainer = styled.div`
   display: flex;
@@ -19,10 +21,12 @@ export const GalleryContainer = styled.div`
 `;
 
 export const Gallery: React.FC = () => {
+  const gallery = useSelector((state: RootState) => state.gallery.gallery);
+
   return (
     <GalleryContainer>
       <h3>All pictures:</h3>
-      <PhotoList photos={DUMMY_PHOTOS} />
+      <PhotoList photos={gallery} />
     </GalleryContainer>
   );
 };

@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+// import { ProvinceFilter } from './province/ProvinceFilter';
+import { NameFilter } from './name/NameFilter';
+import { SpeciesFilter } from './species/SpeciesFilter';
+import { RatingFilter } from './rating/RatingFilter';
 
 export const FilterContainer = styled.nav`
   display: flex;
@@ -24,24 +28,11 @@ export const Filter: React.FC = () => {
   return (
     <FilterContainer>
       <p>Filter by:</p>
-      <select>
-        <option disabled selected>
-          province...
-        </option>
-        <option>Pomorskie</option>
-      </select>
-      <input type="text" placeholder="photographer name..." />
-      <input type="text" placeholder="name of species..." />
-      <select>
-        <option disabled selected>
-          rating...
-        </option>
-        <option>5 stars</option>
-        <option>4 stars</option>
-        <option>3 stars</option>
-        <option>2 stars</option>
-        <option>1 stars</option>
-      </select>
+      <NameFilter />
+      <SpeciesFilter />
+      <RatingFilter />
     </FilterContainer>
   );
 };
+
+// napisać Hooka useFilters i trzymać tam te 4 filtry
