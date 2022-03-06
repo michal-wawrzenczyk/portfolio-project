@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { getBirds } from '../../../../../store/slices/gallery';
 import { useDispatch } from 'react-redux';
-// import { RootState } from '../../../../../store/reducers/rootReducer';
+import { filterPhotosAction } from '../../../../../store/async-actions/filter-photos.action';
+import { AppThunkDispatch } from '../../../../../store/reducers/rootReducer';
 
 const categories = [
   { name: 'Birds', status: false },
@@ -15,34 +15,37 @@ const categories = [
 ];
 
 export const NavFilter: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppThunkDispatch>();
 
-  // const gallery = useSelector((state: RootState) => state.gallery.gallery);
+  const onClick = useCallback(
+    (category: string): Promise<void> => {
+      return dispatch(filterPhotosAction(category));
+    },
+    [dispatch]
+  );
 
   return (
     <nav>
       <ul>
-        <li>
-          <NavLink onClick={() => dispatch(getBirds())} to="/">
-            {categories[0].name}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/">{categories[1].name}</NavLink>
-        </li>
-        <li>
-          <NavLink to="/">{categories[2].name}</NavLink>
-        </li>
-        <li>
-          <NavLink to="/">{categories[3].name}</NavLink>
-        </li>
-        <li>
-          <NavLink to="/">{categories[4].name}</NavLink>
-        </li>
-        <li>
-          <NavLink to="/">{categories[5].name}</NavLink>
-        </li>
+        {categories.map((category) => {
+          return (
+            <li>
+              <NavLink onClick={() => onClick(category.name)} to="/">
+                {category.name}
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
 };
+
+// <li>
+//   <NavLink onClick={() => onClick(categories[0].name)} to="/">
+//     {categories[0].name}
+//   </NavLink>
+// </li>
+
+// use map function for create NavLinks elements
+// category.'' - empty string.

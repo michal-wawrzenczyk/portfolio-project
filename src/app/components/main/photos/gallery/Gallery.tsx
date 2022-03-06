@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { PhotoList } from './PhotoList';
 // import { DUMMY_PHOTOS } from '../../../mock/mock';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/reducers/rootReducer';
+// store -> Selectors directory - there for every slice create selector (good way when app becomes bigger)
+// getPhotoId, getAuthor - reusable list of selector, export them1
+
+import { RootState } from '../../../../../store/slices/types';
 
 export const GalleryContainer = styled.div`
   display: flex;
@@ -21,7 +24,7 @@ export const GalleryContainer = styled.div`
 `;
 
 export const Gallery: React.FC = () => {
-  const gallery = useSelector((state: RootState) => state.gallery.gallery);
+  const gallery = useSelector((state: RootState) => state.galleryState.gallery);
 
   return (
     <GalleryContainer>
