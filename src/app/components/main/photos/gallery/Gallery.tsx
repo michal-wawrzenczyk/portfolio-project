@@ -4,8 +4,7 @@ import { PhotoList } from './PhotoList';
 // import { DUMMY_PHOTOS } from '../../../mock/mock';
 import { useSelector } from 'react-redux';
 // store -> Selectors directory - there for every slice create selector (good way when app becomes bigger)
-// getPhotoId, getAuthor - reusable list of selector, export them1
-
+// getPhotoId, getAuthor - reusable list of selector, export them
 import { RootState } from '../../../../../store/slices/types';
 
 export const GalleryContainer = styled.div`

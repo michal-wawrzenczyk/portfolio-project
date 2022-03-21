@@ -5,10 +5,10 @@ import {
   ThunkDispatch
 } from '@reduxjs/toolkit';
 
-// here reducers functions will be imported from "slices" folder and then implemented to root reducer of store.
 import gallerySliceReducer from '../slices/gallery';
 import { RootState } from '../slices/types';
 
+// here reducers functions will be imported from "slices" folder and then implemented to root reducer of store.
 const rootReducer = combineReducers({
   galleryState: gallerySliceReducer
   // kolejne reducery

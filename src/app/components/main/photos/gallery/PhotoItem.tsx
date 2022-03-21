@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { MediaCard } from '../components/MediaCard';
 
 const Card = styled.div`
   display: flex;
@@ -33,15 +33,5 @@ interface PhotoItemProps {
 }
 
 export const PhotoItem: React.FC<PhotoItemProps> = ({ photoUrl, photoId }) => {
-  return (
-    <Card>
-      <img src={photoUrl} alt="img" />
-      <div>
-        <p>5 stars rating</p>
-        <Link to={`/details/${photoId}`}>
-          <p>show details</p>
-        </Link>
-      </div>
-    </Card>
-  );
+  return <MediaCard url={photoUrl} photoId={photoId} />;
 };

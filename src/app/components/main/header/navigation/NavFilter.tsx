@@ -29,8 +29,10 @@ export const NavFilter: React.FC = () => {
       <ul>
         {categories.map((category) => {
           return (
-            <li>
-              <NavLink onClick={() => onClick(category.name)} to="/">
+            <li key={category.name}>
+              <NavLink
+                onClick={(): Promise<void> => onClick(category.name)}
+                to="/">
                 {category.name}
               </NavLink>
             </li>

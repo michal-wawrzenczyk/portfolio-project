@@ -21,7 +21,11 @@ export const PhotoList: React.FC<PhotoListProps> = ({ photos }) => {
   return (
     <PhotoListContainer>
       {photos.map((photo) => (
-        <PhotoItem photoUrl={photo.photoUrl} photoId={photo.photoId} />
+        <PhotoItem
+          key={photo.photoId}
+          photoUrl={photo.photoUrl}
+          photoId={photo.photoId}
+        />
       ))}
     </PhotoListContainer>
   );
