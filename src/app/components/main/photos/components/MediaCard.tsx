@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 // import Button from '@mui/material/Button';
 // import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import Rating from '@mui/material/Rating';
 
 interface MediaCardProps {
   url: string;
@@ -13,16 +14,29 @@ interface MediaCardProps {
 }
 
 export const MediaCard = ({ url, photoId }: MediaCardProps): any => {
+  const [value, setValue] = React.useState(0);
+
   return (
     <Link to={`/details/${photoId}`}>
-      <Card sx={{ maxWidth: '100%' }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={url}
-          alt="green iguana"
+      <Card
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          maxWidth: '100%',
+          margin: '0.5rem'
+        }}>
+        <CardMedia component="img" image={url} />
+        <Rating
+          name="simple-controlled"
+          value={value}
+          sx={{
+            margin: '0.5rem'
+          }}
+          // onChange={(event, newValue) => {
+          //   setValue(newValue);
+          // }}
         />
-        <CardActions>RATING PLACHOLDER</CardActions>
+        {/*<CardActions>Upload date placeholder</CardActions>*/}
       </Card>
     </Link>
   );
