@@ -20,7 +20,7 @@ export const RatingFilter: React.FC = () => {
         value={rating}
         onChange={(event): void => setRating(event.target.value)}>
         <MenuItem value="">
-          <em>None</em>s
+          <em>None</em>
         </MenuItem>
         <MenuItem value={5}>5 stars</MenuItem>
         <MenuItem value={4}>4 stars</MenuItem>

@@ -1,27 +1,36 @@
 import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { filterPhotosAction } from '../../../../../store/async-actions/filter-photos.action';
 import { AppThunkDispatch } from '../../../../../store/reducers/rootReducer';
+import { filtersSelector } from '../../../../../store/selectors/selectors';
+import { Categories } from '../../../../../store/slices/gallery';
 
 const categories = [
-  { name: 'Birds', status: false },
-  { name: 'Mammals', status: false },
-  { name: 'Reptiles', status: false },
-  { name: 'Amphibians', status: false },
-  { name: 'Insects', status: false },
-  { name: 'All pictures', status: false }
+  // { name: 'Birds', status: false },
+  // { name: 'Mammals', status: false },
+  // { name: 'Reptiles', status: false },
+  // { name: 'Amphibians', status: false },
+  // { name: 'Insects', status: false },
+  // { name: 'All pictures', status: false }
+  Categories.BIRDS,
+  Categories.MAMMALS,
+  Categories.REPTILES,
+  Categories.AMPHIBIANS,
+  Categories.INSECTS,
+  Categories.ALL_PICTURES
 ];
 
 export const NavFilter: React.FC = () => {
   const dispatch = useDispatch<AppThunkDispatch>();
+  const filters = useSelector(filtersSelector);
 
   const onClick = useCallback(
-    (category: string): Promise<void> => {
-      return dispatch(filterPhotosAction(category));
+    (category: Categories): Promise<void> => {
+      return dispatch(filterPhotosAction({ ...filters, category }));
     },
-    [dispatch]
+    [dispatch, filters]
   );
 
   return (
@@ -29,11 +38,9 @@ export const NavFilter: React.FC = () => {
       <ul>
         {categories.map((category) => {
           return (
-            <li key={category.name}>
-              <NavLink
-                onClick={(): Promise<void> => onClick(category.name)}
-                to="/">
-                {category.name}
+            <li key={category}>
+              <NavLink onClick={(): Promise<void> => onClick(category)} to="/">
+                {category}
               </NavLink>
             </li>
           );

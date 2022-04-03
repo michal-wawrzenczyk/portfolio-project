@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { NameFilter } from './name/NameFilter';
 import { SpeciesFilter } from './species/SpeciesFilter';
 import { RatingFilter } from './rating/RatingFilter';
+import { ProvinceFilter } from './province/ProvinceFilter';
 
 export const FilterContainer = styled.nav`
   display: flex;
@@ -28,6 +29,7 @@ export const Filter: React.FC = () => {
   return (
     <FilterContainer>
       <p>Filter by:</p>
+      <ProvinceFilter />
       <NameFilter />
       <SpeciesFilter />
       <RatingFilter />
