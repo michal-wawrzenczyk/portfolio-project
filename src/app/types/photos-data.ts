@@ -1,3 +1,5 @@
+import { Provinces } from "../components/main/filter/province";
+
 export interface PhotosData {
   author: string;
   species: string;
@@ -10,6 +12,6 @@ export interface PhotosData {
     lat: number;
     lon: number;
     city: string;
-    province: string;
+    province: Provinces;
   };
 }

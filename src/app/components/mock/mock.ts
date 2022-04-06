@@ -1,4 +1,5 @@
 import { PhotosData } from '../../types/photos-data';
+import { Provinces } from '../main/filter/province';
 
 export const DUMMY_PHOTOS: PhotosData[] = [
   {
@@ -13,7 +14,7 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lat: 52.89056,
       lon: 18.606074,
       city: 'Toruń',
-      province: 'Kujawsko-pomorskie'
+      province: Provinces.KujawskoPomorskie
     }
   },
   {
@@ -29,7 +30,7 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lat: 54.346697,
       lon: 18.978066,
       city: 'Mikoszewo',
-      province: 'Pomorskie'
+      province: Provinces.Pomorskie
     }
   },
   {
@@ -44,7 +45,7 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lat: 50.298655,
       lon: 18.335984,
       city: 'Stara Kuźnia',
-      province: 'Opolskie'
+      province: Provinces.Opolskie
     }
   },
   {
@@ -59,7 +60,7 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lat: 52.920913,
       lon: 18.561913,
       city: 'Toruń',
-      province: 'Kujawsko-pomorskie'
+      province: Provinces.KujawskoPomorskie
     }
   },
   {
@@ -75,7 +76,7 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lat: 49.524741,
       lon: 20.076949,
       city: 'Nowy Targ',
-      province: 'Małopolskie'
+      province: Provinces.Malopolskie
     }
   },
   {
@@ -90,7 +91,7 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lat: 52.712206,
       lon: 23.825461,
       city: 'Białowieża',
-      province: 'Podlaskie'
+      province: Provinces.Podlaskie
     }
   }
 ];

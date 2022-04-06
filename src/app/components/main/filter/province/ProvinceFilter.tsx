@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText
-} from '@mui/material';
-// import { provinces } from './index';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Provinces, provinces } from './index';
+import { useDispatch, useSelector } from 'react-redux';
+import { filtersSelector } from '../../../../../store/selectors/selectors';
+import { filterPhotosAction } from '../../../../../store/async-actions/filter-photos.action';
 
 export const ProvinceFilter: React.FC = () => {
+  const dispatch = useDispatch();
+  const filters = useSelector(filtersSelector);
   const [province, setProvince] = useState('');
+
+  // zastanowic sie nad przypisaniem enuma zamiast stringa
+  const provinceHandler = (province: Provinces): void => {
+    setProvince(province);
+    dispatch(filterPhotosAction({ ...filters, province }));
+  };
 
   return (
     <FormControl>
@@ -19,14 +24,16 @@ export const ProvinceFilter: React.FC = () => {
         id="province-select"
         label="province"
         value={province}
-        onChange={(event): void => setProvince(event.target.value)}>
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        {/*map function*/}
-        <MenuItem>dolnośląskie</MenuItem>
+        sx={{ width: 220 }}
+        onChange={(event): void => {
+          const province = event.target.value as Provinces;
+          provinceHandler(province);
+        }}>
+        <MenuItem value={''}>None</MenuItem>
+        {provinces.map((province) => (
+          <MenuItem value={province}>{province}</MenuItem>
+        ))}
       </Select>
-      <FormHelperText>Select province</FormHelperText>
     </FormControl>
   );
 };
