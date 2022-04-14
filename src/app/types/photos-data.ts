@@ -1,4 +1,4 @@
-import { Provinces } from "../components/main/filter/province";
+import { Provinces } from '../components/main/filter/province';
 
 export interface PhotosData {
   author: string;

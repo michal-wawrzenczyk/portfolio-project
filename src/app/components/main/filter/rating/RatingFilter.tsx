@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText
-} from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 export const RatingFilter: React.FC = () => {
   const [rating, setRating] = useState('');
@@ -17,6 +11,7 @@ export const RatingFilter: React.FC = () => {
         labelId="rating-select-helper-label"
         id="rating-select"
         label="rating"
+        sx={{ width: 100 }}
         value={rating}
         onChange={(event): void => setRating(event.target.value)}>
         <MenuItem value="">
@@ -28,7 +23,6 @@ export const RatingFilter: React.FC = () => {
         <MenuItem value={2}>2 stars</MenuItem>
         <MenuItem value={1}>1 stars</MenuItem>
       </Select>
-      <FormHelperText>Select rating</FormHelperText>
     </FormControl>
   );
 };

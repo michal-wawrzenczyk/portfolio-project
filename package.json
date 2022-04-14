@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.181",
     "@types/styled-components": "^5.1.21",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
@@ -62,6 +63,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "lodash": "^4.17.21",
     "prettier": "^2.5.1"
   }
 }

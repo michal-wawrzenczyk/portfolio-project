@@ -12,7 +12,9 @@ import { PhotosData } from '../../app/types/photos-data';
 // back-end simulation:
 const getFilteredData = ({
   category,
-  province
+  province,
+  author,
+  species
 }: Ifilters): Promise<PhotosData[]> => {
   let data = [...DUMMY_PHOTOS];
 
@@ -43,9 +45,20 @@ const getFilteredData = ({
     }
 
     if (province) {
-      // filtrowanie
       data = data.filter((picture) => {
         return picture.location?.province === province;
+      });
+    }
+
+    if (author) {
+      data = data.filter((picture) => {
+        return picture.author === author;
+      });
+    }
+
+    if (species) {
+      data = data.filter((picture) => {
+        return picture.species === species;
       });
     }
 
