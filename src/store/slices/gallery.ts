@@ -25,6 +25,15 @@ export interface GalleryStateInterface {
   gallery: PhotosData[];
   showGallery: boolean;
   filters: Ifilters;
+  selectedPhoto: SelectedPhoto;
+}
+
+export interface SelectedPhoto {
+  author: string;
+  species: string;
+  photoUrl: string;
+  description?: string;
+  location?: object;
 }
 
 // Define the initial state using that defined type:
@@ -37,6 +46,12 @@ const initialGalleryState: GalleryStateInterface = {
     rating: null,
     category: Categories.ALL_PICTURES,
     province: Provinces.None
+  },
+  selectedPhoto: {
+    author: '',
+    description: '',
+    photoUrl: '',
+    species: ''
   }
 };
 
@@ -59,11 +74,19 @@ const gallerySlice = createSlice({
       if (action.payload) {
         state.filters = action.payload;
       }
+    },
+    setSelectedPhoto(
+      state: GalleryStateInterface,
+      action: PayloadAction<SelectedPhoto>
+    ): void {
+      if (action.payload) {
+        state.selectedPhoto = action.payload;
+      }
     }
   }
 });
 
 const { actions, reducer: galleryReducer } = gallerySlice;
 
-export const { setFilteredPhotos, setFilters } = actions;
+export const { setFilteredPhotos, setFilters, setSelectedPhoto } = actions;
 export default galleryReducer;

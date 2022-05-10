@@ -9,12 +9,17 @@ const PhotoDetailsContainer = styled.div`
   width: 100%;
   height: 100%;
   column-gap: 0.5rem;
+  padding: 0.5rem;
 `;
 
-const PhotoDetails: React.FC = () => {
+interface PhotoDetailsProps {
+  image: string;
+}
+
+export const PhotoDetails: React.FC<PhotoDetailsProps> = ({ image }) => {
   return (
     <PhotoDetailsContainer>
-      <DetailsCard />
+      <DetailsCard imgUrl="" species="" />
       <Map />
     </PhotoDetailsContainer>
   );

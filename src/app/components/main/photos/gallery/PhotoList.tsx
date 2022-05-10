@@ -20,13 +20,19 @@ interface PhotoListProps {
 export const PhotoList: React.FC<PhotoListProps> = ({ photos }) => {
   return (
     <PhotoListContainer>
-      {photos.map((photo) => (
-        <PhotoItem
-          key={photo.photoId}
-          photoUrl={photo.photoUrl}
-          photoId={photo.photoId}
-        />
-      ))}
+      {photos.map(
+        ({ photoId, photoUrl, author, species, description, location }) => (
+          <PhotoItem
+            key={photoId}
+            photoUrl={photoUrl}
+            photoId={photoId}
+            author={author}
+            species={species}
+            description={description}
+            location={location}
+          />
+        )
+      )}
     </PhotoListContainer>
   );
 };
