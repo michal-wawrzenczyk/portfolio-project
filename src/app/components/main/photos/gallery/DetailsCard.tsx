@@ -6,6 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectedPhotoSelector } from '../../../../../store/selectors/selectors';
+import { Link } from 'react-router-dom';
 
 const DetailsCardContainer = styled.div`
   display: flex;
@@ -23,18 +26,19 @@ const DetailsCardContainer = styled.div`
   }
 `;
 
-interface DetailsCardProps {
-  imgUrl: string;
-  species: string;
-  // author: string;
-  // description?: string;
-}
-
-export const DetailsCard: React.FC<DetailsCardProps> = ({
-  imgUrl = '',
-  species
-}: DetailsCardProps) => {
+export const DetailsCard: React.FC = () => {
+  const selectedPhoto = useSelector(selectedPhotoSelector);
   const [value, setValue] = React.useState(0);
+
+  const { author, photoUrl, species, description, location } = selectedPhoto;
+
+  console.log('$$SELECTOR', {
+    author,
+    photoUrl,
+    species,
+    description,
+    location
+  });
 
   return (
     <DetailsCardContainer>
@@ -43,8 +47,8 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           <CardMedia
             component="img"
             height="400"
-            image={imgUrl}
-            alt="green iguana"
+            image={photoUrl || ''}
+            alt={species || ''}
           />
           <Rating
             name="simple-controlled"
@@ -58,32 +62,45 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Name of species
+              <>{species || ''}</>
             </Typography>
             <Typography gutterBottom variant="subtitle2" component="div">
-              Location
+              <>
+                {location?.province || ''}, {location?.city || ''}
+              </>
             </Typography>
             <Typography gutterBottom variant="subtitle1" component="div">
-              Author
+              <>{author || ''}</>
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Description text...
+              <>{description || ''}</>
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Back to gallery
-          </Button>
+          <Link to={'/'}>
+            <Button size="small" color="primary">
+              Back to gallery
+            </Button>
+          </Link>
         </CardActions>
       </Card>
-      {/*<h2>Name of species</h2>*/}
-      {/*<p>Localization</p>*/}
-      {/*<img alt="image" />*/}
-      {/*<p>Author:</p>*/}
-      {/*<h3>Description:</h3>*/}
-      {/*<p>...</p>*/}
-      {/*<div>Back to gallery</div>*/}
     </DetailsCardContainer>
   );
 };
+
+// grid -> https://mui.com/material-ui/react-grid/
+// https://pl.reactjs.org/docs/fragments.html
+
+{
+  /* {[].map(item => (
+  <>
+    <div></div>
+    <div></div>
+    <div></div>
+  </>
+
+))} */
+}
+
+// check default

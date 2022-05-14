@@ -42,10 +42,15 @@ export const ProvinceFilter: React.FC = () => {
           provinceHandler(provinceName);
         }}>
         <MenuItem value={''}>None</MenuItem>
-        {provinces.map((provinceName) => (
-          <MenuItem value={provinceName}>{provinceName}</MenuItem>
+        {provinces.map((provinceName, index) => (
+          <MenuItem key={`${provinceName}-${index}`} value={provinceName}>
+            {provinceName}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>
   );
 };
+
+// when mapping elements, key must be defined
+// if drag and drop function - then id is better, than index

@@ -33,7 +33,7 @@ export interface SelectedPhoto {
   species: string;
   photoUrl: string;
   description?: string;
-  location?: object;
+  location?: PhotosData['location'];
 }
 
 // Define the initial state using that defined type:

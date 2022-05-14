@@ -16,10 +16,10 @@ interface PhotoDetailsProps {
   image: string;
 }
 
-export const PhotoDetails: React.FC<PhotoDetailsProps> = ({ image }) => {
+export const PhotoDetails: React.FC<PhotoDetailsProps> = () => {
   return (
     <PhotoDetailsContainer>
-      <DetailsCard imgUrl="" species="" />
+      <DetailsCard />
       <Map />
     </PhotoDetailsContainer>
   );

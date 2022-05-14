@@ -1,4 +1,4 @@
-import { Ifilters } from '../slices/gallery';
+import { Ifilters, SelectedPhoto } from '../slices/gallery';
 import { RootState } from '../slices/types';
 import { PhotosData } from '../../app/types/photos-data';
 
@@ -7,3 +7,6 @@ export const filtersSelector = (state: RootState): Ifilters =>
 
 export const gallerySelector = (state: RootState): PhotosData[] =>
   state.galleryState.gallery;
+
+export const selectedPhotoSelector = (state: RootState): SelectedPhoto =>
+  state.galleryState.selectedPhoto;
