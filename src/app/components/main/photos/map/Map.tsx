@@ -17,7 +17,11 @@ export const MapContainerDiv = styled.div`
 export const Map: React.FC = () => {
   return (
     <MapContainerDiv>
-      {/* <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+      <MapContainer
+        style={{ height: '100%', width: '100%' }}
+        center={[51.505, -0.09]}
+        zoom={13}
+        scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -27,8 +31,7 @@ export const Map: React.FC = () => {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-    </MapContainer>; */}
-      ;
+      </MapContainer>
     </MapContainerDiv>
   );
 };
