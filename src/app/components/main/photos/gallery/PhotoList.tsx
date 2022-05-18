@@ -13,7 +13,7 @@ const PhotoListContainer = styled.div`
   flex: 1 1 0;
 `;
 
-interface PhotoListProps {
+export interface PhotoListProps {
   photos: PhotosData[];
 }
 
