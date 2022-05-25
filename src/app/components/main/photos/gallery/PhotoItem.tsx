@@ -17,7 +17,7 @@ const Card = styled.div`
   }
 `;
 
-interface PhotoItemProps {
+export interface PhotoItemProps {
   photoUrl: string;
   photoId: number;
   author: string;

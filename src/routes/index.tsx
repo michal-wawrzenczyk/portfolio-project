@@ -6,6 +6,7 @@ import { WEB_PATHS } from './paths';
 import { MainLayout } from '../app/layout/main';
 import { UniversalLayout } from '../app/layout/universal';
 import { UserLayout } from '../app/layout/user';
+import { Filter } from '../app/components/main/filter/Filter';
 
 const LoadingPage =
   (Component: React.ElementType) =>
@@ -34,7 +35,16 @@ export const Router: React.FC = () => {
       path: WEB_PATHS.home,
       element: <MainLayout />,
       children: [
-        { path: WEB_PATHS.home, element: <HomePage /> },
+        {
+          path: WEB_PATHS.home,
+          element: <HomePage />,
+          children: [
+            {
+              path: WEB_PATHS.photoProvince,
+              element: <Filter />
+            }
+          ]
+        },
         { path: WEB_PATHS.photoDetails, element: <PhotoDetails /> }
       ]
     },

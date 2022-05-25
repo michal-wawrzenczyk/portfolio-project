@@ -12,7 +12,7 @@ import { useMediaCardStyles } from './MediaCard.styles';
 import { setSelectedPhoto } from '../../../../../../store/slices/gallery';
 import { useDispatch } from 'react-redux';
 
-interface MediaCardProps {
+export interface MediaCardProps {
   url: string;
   photoId: number;
   author: string;
@@ -33,14 +33,15 @@ export const MediaCard: React.FC<MediaCardProps> = ({
   const dispatch = useDispatch();
   const classes = useMediaCardStyles();
 
-  const doSomething = () => {
+  const doSomething = (): void => {
     dispatch(
       setSelectedPhoto({
         author,
         species,
         description: description ?? '',
         location: location ?? {},
-        photoUrl: url
+        photoUrl: url,
+        photoId
       })
     );
   };
@@ -53,7 +54,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({
         maxWidth: '100%',
         margin: '0.5rem'
       }}>
-      <Link onClick={() => doSomething()} to={`/details/${photoId}`}>
+      <Link onClick={(): void => doSomething()} to={`/details/${photoId}`}>
         <div className={classes.overlayContainer}>
           <div className={classes.overlay}></div>
           <CardMedia component="img" image={url} />

@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { DUMMY_PHOTOS } from '../../../mock/mock';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Link } from 'react-router-dom';
+// import { setSelectedPhoto } from '../../../../../store/slices/gallery';
+// import { useDispatch } from 'react-redux';
 
 export const MapContainerDiv = styled.div`
   width: 50%;
@@ -29,11 +32,6 @@ export const Map: React.FC = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/*<Marker position={[52.237049, 21.017532]}>*/}
-        {/*  <Popup>*/}
-        {/*    A pretty CSS3 popup. <br /> Easily customizable.*/}
-        {/*  </Popup>*/}
-        {/*</Marker>*/}
         {DUMMY_PHOTOS.map((pic) => {
           if (pic.location?.lat && pic.location?.lon) {
             return (
@@ -41,7 +39,8 @@ export const Map: React.FC = () => {
                 key={pic.photoId}
                 position={[pic.location?.lat, pic.location?.lon]}>
                 <Popup>
-                  <b>{pic.species}</b> <br /> {pic.author}
+                  <b>{pic.species}</b> <br /> {pic.author} <br />
+                  <Link to={`/details/${pic.photoId}`}>Show details</Link>
                 </Popup>
               </Marker>
             );

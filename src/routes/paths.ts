@@ -1,5 +1,6 @@
 export const WEB_PATHS = {
   home: '/',
+  photoProvince: '/province/:province',
   logIn: '/log-in',
   signUp: '/sign-up',
   category: '/category',

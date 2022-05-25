@@ -32,6 +32,7 @@ export interface SelectedPhoto {
   author: string;
   species: string;
   photoUrl: string;
+  photoId: number;
   description?: string;
   location?: PhotosData['location'];
 }
@@ -51,6 +52,7 @@ const initialGalleryState: GalleryStateInterface = {
     author: '',
     description: '',
     photoUrl: '',
+    photoId: 0,
     species: ''
   }
 };

@@ -4,6 +4,7 @@ import { Provinces, provinces } from './index';
 import { useDispatch, useSelector } from 'react-redux';
 import { filtersSelector } from '../../../../../store/selectors/selectors';
 import { filterPhotosAction } from '../../../../../store/async-actions/filter-photos.action';
+import { useNavigate } from 'react-router-dom';
 
 const ITEM_HEIGHT = 50;
 const ITEM_PADDING_TOP = 8;
@@ -17,6 +18,7 @@ const MenuProps = {
 };
 
 export const ProvinceFilter: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const filters = useSelector(filtersSelector);
   const [province, setProvince] = useState('');
@@ -43,7 +45,10 @@ export const ProvinceFilter: React.FC = () => {
         }}>
         <MenuItem value={''}>None</MenuItem>
         {provinces.map((provinceName, index) => (
-          <MenuItem key={`${provinceName}-${index}`} value={provinceName}>
+          <MenuItem
+            onClick={(): void => navigate(`/province/${provinceName}`)}
+            key={`${provinceName}-${index}`}
+            value={provinceName}>
             {provinceName}
           </MenuItem>
         ))}
