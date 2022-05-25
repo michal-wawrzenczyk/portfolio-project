@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Link } from 'react-router-dom';
 // import { setSelectedPhoto } from '../../../../../store/slices/gallery';
 // import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const MapContainerDiv = styled.div`
   width: 50%;
@@ -20,6 +21,7 @@ export const MapContainerDiv = styled.div`
 export const Map: React.FC = () => {
   // const photoMarker = useSelector(selectedPhotoSelector);
   // const { author, photoUrl, species, description, location } = chosenPhoto;
+  const navigate = useNavigate();
 
   return (
     <MapContainerDiv>
@@ -40,7 +42,10 @@ export const Map: React.FC = () => {
                 position={[pic.location?.lat, pic.location?.lon]}>
                 <Popup>
                   <b>{pic.species}</b> <br /> {pic.author} <br />
-                  <Link to={`/details/${pic.photoId}`}>Show details</Link>
+                  <button
+                    onClick={(): void => navigate(`/details/${pic.photoId}`)}>
+                    Show details
+                  </button>
                 </Popup>
               </Marker>
             );
