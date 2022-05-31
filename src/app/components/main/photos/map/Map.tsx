@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { DUMMY_PHOTOS } from '../../../mock/mock';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Link } from 'react-router-dom';
-// import { setSelectedPhoto } from '../../../../../store/slices/gallery';
-// import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { MarkerButton } from '../../../shared/buttons/MarkerButton-styles';
 
 export const MapContainerDiv = styled.div`
   width: 50%;
@@ -19,8 +17,6 @@ export const MapContainerDiv = styled.div`
 `;
 
 export const Map: React.FC = () => {
-  // const photoMarker = useSelector(selectedPhotoSelector);
-  // const { author, photoUrl, species, description, location } = chosenPhoto;
   const navigate = useNavigate();
 
   return (
@@ -42,10 +38,11 @@ export const Map: React.FC = () => {
                 position={[pic.location?.lat, pic.location?.lon]}>
                 <Popup>
                   <b>{pic.species}</b> <br /> {pic.author} <br />
-                  <button
+                  <MarkerButton
+                    className="marker-button"
                     onClick={(): void => navigate(`/details/${pic.photoId}`)}>
                     Show details
-                  </button>
+                  </MarkerButton>
                 </Popup>
               </Marker>
             );

@@ -7,7 +7,7 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { selectedPhotoSelector, getSelectedPhotoById } from '../../../../../store/selectors/selectors';
+import { getSelectedPhotoById } from '../../../../../store/selectors/selectors';
 import { Link, useParams } from 'react-router-dom';
 
 const DetailsCardContainer = styled.div`
@@ -27,29 +27,14 @@ const DetailsCardContainer = styled.div`
 `;
 
 export const DetailsCard: React.FC = () => {
-  const { photoId } = useParams()
-  const selectedPhoto = useSelector(selectedPhotoSelector);
+  const { photoId } = useParams();
   const selectedPhotoById = useSelector(getSelectedPhotoById(photoId));
   const [value, setValue] = React.useState(0);
 
-  console.log('params', photoId)
-  console.log('selectedPhotoById', selectedPhotoById)
-  // const { author, photoUrl, species, description, location } = selectedPhoto;
-  const { author, photoUrl, species, description, location } = selectedPhotoById;
-
-
-  // useParams (wyciągnąć ID, hook useSelectedPhoto i wygenerować asynchroniczną akcję - będzie updatować selectedPhotoID)
-  // i zaktualizować stora
-
-  // getSelectedPhotoByID
-
-  // console.log('$$SELECTOR', {
-  //   author,
-  //   photoUrl,
-  //   species,
-  //   description,
-  //   location
-  // });
+  console.log('params', photoId);
+  console.log('selectedPhotoById', selectedPhotoById);
+  const { author, photoUrl, species, description, location } =
+    selectedPhotoById;
 
   return (
     <DetailsCardContainer>
@@ -102,16 +87,3 @@ export const DetailsCard: React.FC = () => {
 
 // grid -> https://mui.com/material-ui/react-grid/
 // https://pl.reactjs.org/docs/fragments.html
-
-{
-  /* {[].map(item => (
-  <>
-    <div></div>
-    <div></div>
-    <div></div>
-  </>
-
-))} */
-}
-
-// check default

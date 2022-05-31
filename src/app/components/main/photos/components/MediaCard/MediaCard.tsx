@@ -7,7 +7,6 @@ import CardMedia from '@mui/material/CardMedia';
 // import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
-// import { Box } from '@mui/material';
 import { useMediaCardStyles } from './MediaCard.styles';
 import { setSelectedPhoto } from '../../../../../../store/slices/gallery';
 import { useDispatch } from 'react-redux';

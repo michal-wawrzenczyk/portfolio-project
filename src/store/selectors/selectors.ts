@@ -12,25 +12,28 @@ export const gallerySelector = (state: RootState): PhotosData[] =>
 export const selectedPhotoSelector = (state: RootState): SelectedPhoto =>
   state.galleryState.selectedPhoto;
 
-export const getSelectedPhotoById = (paramID: string | undefined) => (state: RootState): PhotosData => {
-  const filteredPhotoById: PhotosData = state.galleryState.gallery.find((photo) => photo.photoId === Number(paramID)) || {
-    author: '',
-    species: "",
-    category: "",
-    photoUrl: "",
-    photoId: 0,
-    uploadTimeStamp: 0,
-    description: "",
-    location: {
+export const getSelectedPhotoById =
+  (paramID: string | undefined) =>
+  (state: RootState): PhotosData => {
+    const filteredPhotoById: PhotosData = state.galleryState.gallery.find(
+      (photo) => photo.photoId === Number(paramID)
+    ) || {
+      author: '',
+      species: '',
+      category: '',
+      photoUrl: '',
+      photoId: 0,
+      uploadTimeStamp: 0,
+      description: '',
+      location: {
         lat: 0,
         lon: 0,
-        city: "",
-        province: Provinces.None,
-    }
-  }
-  return filteredPhotoById
-}
-
+        city: '',
+        province: Provinces.None
+      }
+    };
+    return filteredPhotoById;
+  };
 
 // export const selectedPhotoId
 
