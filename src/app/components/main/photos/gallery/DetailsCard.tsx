@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -29,12 +29,7 @@ const DetailsCardContainer = styled.div`
 export const DetailsCard: React.FC = () => {
   const { photoId } = useParams();
   const selectedPhotoById = useSelector(getSelectedPhotoById(photoId));
-  const [value, setValue] = React.useState(0);
-
-  console.log('params', photoId);
-  console.log('selectedPhotoById', selectedPhotoById);
-  const { author, photoUrl, species, description, location } =
-    selectedPhotoById;
+  const [value, setValue] = useState(0);
 
   return (
     <DetailsCardContainer>
@@ -43,8 +38,8 @@ export const DetailsCard: React.FC = () => {
           <CardMedia
             component="img"
             height="400"
-            image={photoUrl || ''}
-            alt={species || ''}
+            image={selectedPhotoById?.photoUrl}
+            alt={selectedPhotoById?.species}
           />
           <Rating
             name="simple-controlled"
@@ -58,18 +53,17 @@ export const DetailsCard: React.FC = () => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              <>{species || ''}</>
+              {selectedPhotoById?.species}
             </Typography>
             <Typography gutterBottom variant="subtitle2" component="div">
-              <>
-                {location?.province || ''}, {location?.city || ''}
-              </>
+              {selectedPhotoById?.location?.province},
+              {selectedPhotoById?.location?.city}
             </Typography>
             <Typography gutterBottom variant="subtitle1" component="div">
-              <>{author || ''}</>
+              {selectedPhotoById?.author}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <>{description || ''}</>
+              {selectedPhotoById?.description}
             </Typography>
           </CardContent>
         </CardActionArea>

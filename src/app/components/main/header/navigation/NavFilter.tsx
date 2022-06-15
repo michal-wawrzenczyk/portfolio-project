@@ -5,21 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterPhotosAction } from '../../../../../store/async-actions/filter-photos.action';
 import { AppThunkDispatch } from '../../../../../store/reducers/rootReducer';
 import { filtersSelector } from '../../../../../store/selectors/selectors';
-import { Categories } from '../../../../../store/slices/gallery';
+import { Categories, clearFilters } from '../../../../../store/slices/gallery';
+import { Button } from '@mui/material';
 
 const categories = [
-  // { name: 'Birds', status: false },
-  // { name: 'Mammals', status: false },
-  // { name: 'Reptiles', status: false },
-  // { name: 'Amphibians', status: false },
-  // { name: 'Insects', status: false },
-  // { name: 'All pictures', status: false }
   Categories.BIRDS,
   Categories.MAMMALS,
   Categories.REPTILES,
   Categories.AMPHIBIANS,
-  Categories.INSECTS,
-  Categories.ALL_PICTURES
+  Categories.INSECTS
 ];
 
 export const NavFilter: React.FC = () => {
@@ -33,6 +27,10 @@ export const NavFilter: React.FC = () => {
     [dispatch, filters]
   );
 
+  const clearFiltersHandler = (): void => {
+    dispatch(clearFilters());
+  };
+
   return (
     <nav>
       <ul>
@@ -45,6 +43,11 @@ export const NavFilter: React.FC = () => {
             </li>
           );
         })}
+        <li>
+          <Button onClick={(): void => clearFiltersHandler()}>
+            Clear Filters
+          </Button>
+        </li>
       </ul>
     </nav>
   );

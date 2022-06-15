@@ -6,11 +6,14 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
 import store from './store/slices/store';
+import { ThemeConfig } from './theme';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeConfig>
+        <App />
+      </ThemeConfig>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

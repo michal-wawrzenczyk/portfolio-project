@@ -1,5 +1,5 @@
 import React from 'react';
-import TextField from '@mui/material/TextField';
+import { TextField, Autocomplete } from '@mui/material';
 import {
   filtersSelector,
   gallerySelector
@@ -7,7 +7,6 @@ import {
 import { filterPhotosAction } from '../../../../../store/async-actions/filter-photos.action';
 import { useDispatch, useSelector } from 'react-redux';
 import _uniq from 'lodash/uniq';
-import { Autocomplete } from '@mui/material';
 
 export const SpeciesFilter: React.FC = () => {
   const filters = useSelector(filtersSelector);
@@ -15,7 +14,6 @@ export const SpeciesFilter: React.FC = () => {
   const dispatch = useDispatch();
 
   const speciesArray = _uniq(gallery.map((photoInfo) => photoInfo.species));
-  console.log('species', speciesArray);
 
   const authorHandler = (species: string): void => {
     dispatch(filterPhotosAction({ ...filters, species: species }));
@@ -33,12 +31,8 @@ export const SpeciesFilter: React.FC = () => {
         authorHandler(species);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Name of species..." variant="standard" />
+        <TextField {...params} label="Name of species..." />
       )}
     />
   );
 };
-
-// export const SpeciesFilter: React.FC = () => {
-//   return <input type="text" placeholder="name of species..." />;
-// };

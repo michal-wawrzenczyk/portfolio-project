@@ -77,6 +77,16 @@ const gallerySlice = createSlice({
         state.filters = action.payload;
       }
     },
+    clearFilters(state: GalleryStateInterface): void {
+      state.gallery = DUMMY_PHOTOS;
+      state.filters = {
+        author: '',
+        species: '',
+        rating: null,
+        category: Categories.ALL_PICTURES,
+        province: Provinces.None
+      };
+    },
     setSelectedPhoto(
       state: GalleryStateInterface,
       action: PayloadAction<SelectedPhoto>
@@ -90,5 +100,6 @@ const gallerySlice = createSlice({
 
 const { actions, reducer: galleryReducer } = gallerySlice;
 
-export const { setFilteredPhotos, setFilters, setSelectedPhoto } = actions;
+export const { setFilteredPhotos, setFilters, setSelectedPhoto, clearFilters } =
+  actions;
 export default galleryReducer;

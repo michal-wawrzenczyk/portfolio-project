@@ -5,8 +5,6 @@ import { NameFilter } from './name/NameFilter';
 import { SpeciesFilter } from './species/SpeciesFilter';
 import { RatingFilter } from './rating/RatingFilter';
 import { ProvinceFilter } from './province/ProvinceFilter';
-import { ThemeProvider } from '@mui/styles';
-import { filterElementTheme } from '../../../../styles/theme/filterElementTheme';
 
 export const FilterContainer = styled.nav`
   display: flex;
@@ -29,15 +27,13 @@ export const FilterContainer = styled.nav`
 
 export const Filter: React.FC = () => {
   return (
-    <ThemeProvider theme={filterElementTheme}>
-      <FilterContainer>
-        <p>Filter by:</p>
-        <RatingFilter />
-        <ProvinceFilter />
-        <NameFilter />
-        <SpeciesFilter />
-      </FilterContainer>
-    </ThemeProvider>
+    <FilterContainer>
+      <p>Filter by:</p>
+      <RatingFilter />
+      <ProvinceFilter />
+      <NameFilter />
+      <SpeciesFilter />
+    </FilterContainer>
   );
 };
 

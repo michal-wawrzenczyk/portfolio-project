@@ -8,17 +8,12 @@ import {
 import _uniq from 'lodash/uniq';
 import { filterPhotosAction } from '../../../../../store/async-actions/filter-photos.action';
 
-// export const NameFilter: React.FC = () => {
-//   return <input type="text" placeholder="photographer name..." />;
-// };
-
 export const NameFilter: React.FC = () => {
   const filters = useSelector(filtersSelector);
   const gallery = useSelector(gallerySelector);
   const dispatch = useDispatch();
 
   const authors = _uniq(gallery.map((photoInfo) => photoInfo.author));
-  console.log('authors', authors);
 
   const authorHandler = (author: string): void => {
     dispatch(filterPhotosAction({ ...filters, author: author }));
