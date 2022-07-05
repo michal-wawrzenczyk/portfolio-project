@@ -1,5 +1,5 @@
 import { AppThunkAction } from '../reducers/rootReducer';
-import { DUMMY_PHOTOS } from '../../app/components/mock/mock';
+import { DUMMY_PHOTOS } from '../../assets/mock';
 import {
   Categories,
   Ifilters,

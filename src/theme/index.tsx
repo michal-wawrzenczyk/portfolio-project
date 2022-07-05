@@ -10,12 +10,15 @@ import { palette } from './palette';
 import { typography } from './typography';
 import { shapes } from './shapes';
 import { createComponentsOverrides } from './overrides';
+import { GlobalStylesComponent } from './globalStyles';
 
 type ThemeConfigProps = {
   children: ReactNode;
 };
 
-export const ThemeConfig = ({ children }: ThemeConfigProps) => {
+export const ThemeConfig = ({
+  children
+}: ThemeConfigProps): React.ReactElement => {
   const themeOptions: ThemeOptions = {
     palette: palette,
     typography: typography,
@@ -27,6 +30,7 @@ export const ThemeConfig = ({ children }: ThemeConfigProps) => {
 
   return (
     <StyledEngineProvider injectFirst>
+      <GlobalStylesComponent />
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </StyledEngineProvider>
   );

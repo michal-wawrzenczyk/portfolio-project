@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Provinces } from '../../app/components/main/filter/province';
-import { DUMMY_PHOTOS } from '../../app/components/mock/mock';
+import { Province } from '../../app/components/filter/filters/province';
+import { DUMMY_PHOTOS } from '../../assets/mock';
 import { PhotosData } from '../../app/types/photos-data';
 
 export enum Categories {
@@ -17,7 +17,7 @@ export interface Ifilters {
   species: string;
   rating: number | null;
   category: Categories;
-  province: Provinces;
+  province: Province;
 }
 
 // Define a type for the slice state:
@@ -46,7 +46,7 @@ const initialGalleryState: GalleryStateInterface = {
     species: '',
     rating: null,
     category: Categories.ALL_PICTURES,
-    province: Provinces.None
+    province: Province.None
   },
   selectedPhoto: {
     author: '',
@@ -84,7 +84,7 @@ const gallerySlice = createSlice({
         species: '',
         rating: null,
         category: Categories.ALL_PICTURES,
-        province: Provinces.None
+        province: Province.None
       };
     },
     setSelectedPhoto(

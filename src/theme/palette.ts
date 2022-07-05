@@ -16,7 +16,7 @@ const COMMON = {
 };
 
 const BACKGROUND = {
-  light: '#e0e0e0',
+  light: 'white',
   default: PRIMARY.blue
 };
 
