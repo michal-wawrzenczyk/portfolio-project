@@ -16,4 +16,6 @@ export interface PhotosData {
   uploadTimeStamp: number;
   description?: string;
   location?: Location;
+  avgValue: number | null;
+  ratingValues: number[];
 }

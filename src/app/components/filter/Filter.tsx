@@ -4,6 +4,7 @@ import { NameFilter } from './filters/NameFilter';
 import { SpeciesFilter } from './filters/SpeciesFilter';
 import { RatingFilter } from './filters/RatingFilter';
 import { ProvinceFilter } from './filters/ProvinceFilter';
+import { Grid } from '@mui/material';
 
 export const FilterContainer = styled.nav`
   display: flex;
@@ -26,13 +27,23 @@ export const FilterContainer = styled.nav`
 
 export const Filter: React.FC = () => {
   return (
-    <FilterContainer>
-      <p>Filter by:</p>
-      <RatingFilter />
-      <ProvinceFilter />
-      <NameFilter />
-      <SpeciesFilter />
-    </FilterContainer>
+
+    // <FilterContainer>
+    <Grid container minWidth='100%' height={'100px'}>
+      <Grid item xs={3}>
+        <RatingFilter />
+      </Grid>
+      <Grid item xs={3}>
+        <ProvinceFilter />
+      </Grid>
+      <Grid item xs={3}>
+        <NameFilter />
+      </Grid>
+      <Grid item xs={3}>
+        <SpeciesFilter />
+      </Grid>
+    </Grid>
+    // </FilterContainer>
   );
 };
 

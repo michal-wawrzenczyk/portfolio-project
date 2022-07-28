@@ -15,7 +15,9 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lon: 18.606074,
       city: 'Toruń',
       province: Province.KujawskoPomorskie
-    }
+    },
+    avgValue: 0,
+    ratingValues: []
   },
   {
     author: 'Grzegorz Długosz',
@@ -31,7 +33,9 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lon: 18.978066,
       city: 'Mikoszewo',
       province: Province.Pomorskie
-    }
+    },
+    avgValue: 0,
+    ratingValues: []
   },
   {
     author: 'Michał Wawrzeńczyk',
@@ -46,7 +50,9 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lon: 18.335984,
       city: 'Stara Kuźnia',
       province: Province.Opolskie
-    }
+    },
+    avgValue: 0,
+    ratingValues: []
   },
   {
     author: 'Michał Wawrzeńczyk',
@@ -61,7 +67,9 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lon: 18.561913,
       city: 'Toruń',
       province: Province.KujawskoPomorskie
-    }
+    },
+    avgValue: 0,
+    ratingValues: []
   },
   {
     author: 'Michał Wawrzeńczyk',
@@ -77,7 +85,9 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lon: 20.076949,
       city: 'Nowy Targ',
       province: Province.Malopolskie
-    }
+    },
+    avgValue: 0,
+    ratingValues: []
   },
   {
     author: 'Grzegorz Długosz',
@@ -92,6 +102,8 @@ export const DUMMY_PHOTOS: PhotosData[] = [
       lon: 23.825461,
       city: 'Białowieża',
       province: Province.Podlaskie
-    }
+    },
+    avgValue: 0,
+    ratingValues: []
   }
 ];

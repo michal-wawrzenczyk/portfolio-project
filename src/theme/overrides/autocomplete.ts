@@ -14,8 +14,6 @@ export function createAutocomplete(
           // Some CSS
           padding: 5,
           fontSize: '1rem',
-          width: '300px',
-          height: '20px'
         }
       }
     }

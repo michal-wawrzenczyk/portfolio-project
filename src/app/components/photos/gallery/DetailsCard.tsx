@@ -6,9 +6,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { gallerySelectors } from '../../../../store/selectors/selectors';
 import { Link, useParams } from 'react-router-dom';
+import { setRating } from '../../../../store/slices/gallery';
 
 const DetailsCardContainer = styled.div`
   display: flex;
@@ -27,10 +28,12 @@ const DetailsCardContainer = styled.div`
 `;
 
 export const DetailsCard: React.FC = () => {
+  const dispatch = useDispatch();
   const { getSelectedPhotoById } = gallerySelectors;
   const { photoId } = useParams();
   const selectedPhotoById = useSelector(getSelectedPhotoById(photoId));
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
+  const photoData = useSelector(getSelectedPhotoById(String(photoId)));
 
   return (
     <DetailsCardContainer>
@@ -44,13 +47,15 @@ export const DetailsCard: React.FC = () => {
           />
           <Rating
             name="simple-controlled"
-            value={value}
+            value={photoData?.avgValue}
             sx={{
               margin: '0.5rem'
             }}
-            // onChange={(event, newValue) => {
-            //   setValue(newValue);
-            // }}
+            onChange={(event, newValue) => {
+               if (!!newValue && photoId !== 'undefined') {
+                dispatch(setRating({photoId: Number(photoId), value: newValue}));
+              }
+            }}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

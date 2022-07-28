@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 // import CardActions from '@mui/material/CardActions';
 // import CardContent from '@mui/material/CardContent';
@@ -8,8 +8,10 @@ import CardMedia from '@mui/material/CardMedia';
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import { useMediaCardStyles } from './MediaCard.styles';
-import { setSelectedPhoto } from '../../../../store/slices/gallery';
-import { useDispatch } from 'react-redux';
+import { setRating, setSelectedPhoto } from '../../../../store/slices/gallery';
+import { useDispatch, useSelector } from 'react-redux';
+import { gallerySelectors } from '../../../../store/selectors/selectors';
+import { CardActions } from '@mui/material';
 
 export interface MediaCardProps {
   url: string;
@@ -28,8 +30,11 @@ export const MediaCard: React.FC<MediaCardProps> = ({
   description,
   location
 }: MediaCardProps) => {
-  const [value, setValue] = useState<number[]>([]);
-  const [avgValue, setAvgValue] = useState<number | null>(null);
+  // const [value, setValue] = useState<number[]>([]);
+  // const [avgValue, setAvgValue] = useState<number | null>(null);
+  const photoData = useSelector(
+    gallerySelectors.getSelectedPhotoById(String(photoId))
+  );
   const dispatch = useDispatch();
   const classes = useMediaCardStyles();
 
@@ -55,9 +60,9 @@ export const MediaCard: React.FC<MediaCardProps> = ({
   };
 
   // TODO: lifecycle hooks - dokumentacja reacta
-  useEffect(() => {
-    setAvgValue(getAverage(value));
-  }, [value]);
+  // useEffect(() => {
+  //   setAvgValue(getAverage(value));
+  // }, [value]);
 
   return (
     <Card
@@ -75,22 +80,18 @@ export const MediaCard: React.FC<MediaCardProps> = ({
       </Link>
       <Rating
         name="simple-controlled"
-        value={avgValue}
-        // onClick={(event: any ): any => console.log('event.target', event.target.value)}
+        value={photoData?.avgValue}
+        // newValue otrzymujemy jako null | number, value jest jako number
         onChange={(event, newValue) => {
-          // console.log('newValue', newValue)
           if (typeof newValue === 'number') {
-            setValue([...value, newValue]);
+            dispatch(setRating({ photoId: photoId, value: newValue }));
           }
         }}
         sx={{
           margin: '0.5rem'
         }}
-        // onChange={(event, newValue) => {
-        //   setValue(newValue);
-        // }}
       />
-      {/*<CardActions>Upload date placeholder</CardActions>*/}
+      <CardActions>Upload date placeholder</CardActions>
     </Card>
   );
 };

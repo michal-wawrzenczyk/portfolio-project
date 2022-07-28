@@ -94,12 +94,45 @@ const gallerySlice = createSlice({
       if (action.payload) {
         state.selectedPhoto = action.payload;
       }
+    },
+    setRating(
+      state: GalleryStateInterface,
+      action: PayloadAction<{
+        photoId: number;
+        value: number;
+      }>
+    ): void {
+      // const photoDetail = state.gallery.find(photo => photo.photoId === photoId)
+      console.log('akcja setRating')
+      const mappedPhotoData = state.gallery
+        .map((photoData) =>
+          photoData.photoId === action.payload.photoId
+            ? {
+                ...photoData,
+                ratingValues: [...photoData.ratingValues, action.payload.value]
+              }
+            : photoData
+        )
+        .map((photoData) =>
+          photoData.photoId === action.payload.photoId
+            ? {
+                ...photoData,
+                avgValue: Math.round(photoData.ratingValues.reduce((a, b) => a + b, 0) / photoData.ratingValues.length)
+              }
+            : photoData
+        )
+
+      state.gallery = mappedPhotoData;
+    // mappedPhotoData.reduce((a, b) => a + b, 0);
+    // divide sum by amount of numbers
+    // return Math.round(sum / array.length);
+
     }
   }
 });
 
 const { actions, reducer: galleryReducer } = gallerySlice;
 
-export const { setFilteredPhotos, setFilters, setSelectedPhoto, clearFilters } =
+export const { setFilteredPhotos, setFilters, setSelectedPhoto, clearFilters, setRating } =
   actions;
 export default galleryReducer;

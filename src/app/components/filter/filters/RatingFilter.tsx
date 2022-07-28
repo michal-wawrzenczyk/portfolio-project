@@ -8,10 +8,10 @@ export const RatingFilter: React.FC = () => {
     <FormControl>
       <InputLabel id="rating-select-helper-label">Rating</InputLabel>
       <Select
+        autoWidth={true}
         labelId="rating-select-helper-label"
         id="rating-select"
         label="rating"
-        sx={{ width: 100 }}
         value={rating}
         onChange={(event): void => setRating(event.target.value)}>
         <MenuItem value="">

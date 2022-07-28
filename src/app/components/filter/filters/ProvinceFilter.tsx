@@ -39,7 +39,7 @@ export const ProvinceFilter: React.FC = () => {
         label="province"
         value={province}
         // sx={{ width: 220 }}
-        MenuProps={MenuProps}
+        // MenuProps={MenuProps}
         onChange={(event): void => {
           const provinceName = event.target.value as Province;
           provinceHandler(provinceName);

@@ -1,11 +1,12 @@
 import React from 'react';
 import { TextField, Autocomplete } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { gallerySelectors } from '../../../../store/selectors/selectors';
 import _uniq from 'lodash/uniq';
 import { filterPhotosAction } from '../../../../store/async-actions/filter-photos.action';
+import { gallerySelectors } from '../../../../store/selectors/selectors';
 
 export const NameFilter: React.FC = () => {
+  // gallerySelector to nie selektor, tylko obiekt, który trzyma listę selektorów - jak tutaj uzyć useSelector?
   const { filtersSelector, gallerySelector } = gallerySelectors;
   const filters = useSelector(filtersSelector);
   const gallery = useSelector(gallerySelector);

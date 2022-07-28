@@ -12,7 +12,8 @@ const selectedPhotoSelector = (state: RootState): SelectedPhoto =>
   state.galleryState.selectedPhoto;
 
 const getSelectedPhotoById =
-  (paramID: string | undefined) =>
+  // (paramID: string | undefined)
+  (paramID?: string) =>
   (state: RootState): PhotosData | undefined => {
     return state.galleryState.gallery.find(
       (photo) => photo.photoId === Number(paramID)
