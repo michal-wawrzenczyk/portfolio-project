@@ -35,9 +35,12 @@ export interface SelectedPhoto {
   photoId: number;
   description?: string;
   location?: PhotosData['location'];
+  avgValue: PhotosData['avgValue'];
+  ratingValues: PhotosData['ratingValues'];
 }
 
 // Define the initial state using that defined type:
+// do przerobienia - loader i async function
 const initialGalleryState: GalleryStateInterface = {
   gallery: DUMMY_PHOTOS,
   showGallery: true,
@@ -53,7 +56,9 @@ const initialGalleryState: GalleryStateInterface = {
     description: '',
     photoUrl: '',
     photoId: 0,
-    species: ''
+    species: '',
+    avgValue: 0,
+    ratingValues: []
   }
 };
 
@@ -103,7 +108,7 @@ const gallerySlice = createSlice({
       }>
     ): void {
       // const photoDetail = state.gallery.find(photo => photo.photoId === photoId)
-      console.log('akcja setRating')
+      console.log('akcja setRating');
       const mappedPhotoData = state.gallery
         .map((photoData) =>
           photoData.photoId === action.payload.photoId
@@ -117,22 +122,26 @@ const gallerySlice = createSlice({
           photoData.photoId === action.payload.photoId
             ? {
                 ...photoData,
-                avgValue: Math.round(photoData.ratingValues.reduce((a, b) => a + b, 0) / photoData.ratingValues.length)
+                avgValue: Math.round(
+                  photoData.ratingValues.reduce((a, b) => a + b, 0) /
+                    photoData.ratingValues.length
+                )
               }
             : photoData
-        )
+        );
 
       state.gallery = mappedPhotoData;
-    // mappedPhotoData.reduce((a, b) => a + b, 0);
-    // divide sum by amount of numbers
-    // return Math.round(sum / array.length);
-
     }
   }
 });
 
 const { actions, reducer: galleryReducer } = gallerySlice;
 
-export const { setFilteredPhotos, setFilters, setSelectedPhoto, clearFilters, setRating } =
-  actions;
+export const {
+  setFilteredPhotos,
+  setFilters,
+  setSelectedPhoto,
+  clearFilters,
+  setRating
+} = actions;
 export default galleryReducer;

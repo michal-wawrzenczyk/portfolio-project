@@ -11,3 +11,5 @@ export const WEB_PATHS = {
 };
 
 // /province/kujawsko-pomorskie -> ?province="x"&"photographer-name"...
+// http://localhost:3000/province/lubelskie
+// http://localhost:3000?province=lubelskie&rating=

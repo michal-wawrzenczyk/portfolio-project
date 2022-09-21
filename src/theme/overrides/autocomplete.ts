@@ -12,8 +12,7 @@ export function createAutocomplete(
         // Name of the slot
         root: {
           // Some CSS
-          padding: 5,
-          fontSize: '1rem',
+          fontSize: '1rem'
         }
       }
     }

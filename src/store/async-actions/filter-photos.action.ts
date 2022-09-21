@@ -55,6 +55,7 @@ const getFilteredData = ({
 export const filterPhotosAction = (filters: Ifilters): AppThunkAction => {
   return async function thunk(dispatch): Promise<void> {
     try {
+      console.log('filterPhotosAction filters', filters)
       const filteredData = await getFilteredData(filters);
       dispatch(setFilteredPhotos(filteredData));
       dispatch(setFilters(filters));

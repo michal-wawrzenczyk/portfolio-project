@@ -13,22 +13,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { gallerySelectors } from '../../../../store/selectors/selectors';
 import { CardActions } from '@mui/material';
 
-export interface MediaCardProps {
-  url: string;
+type MediaCardProps = {
   photoId: number;
-  author: string;
-  species: string;
-  description?: string;
-  location?: object;
+  showCardDetails: () => void;
 }
 
-export const MediaCard: React.FC<MediaCardProps> = ({
-  url,
+export const MediaCard = ({
   photoId,
-  author,
-  species,
-  description,
-  location
+  showCardDetails
 }: MediaCardProps) => {
   // const [value, setValue] = useState<number[]>([]);
   // const [avgValue, setAvgValue] = useState<number | null>(null);
@@ -38,26 +30,26 @@ export const MediaCard: React.FC<MediaCardProps> = ({
   const dispatch = useDispatch();
   const classes = useMediaCardStyles();
 
-  const doSomething = (): void => {
-    dispatch(
-      setSelectedPhoto({
-        author,
-        species,
-        description: description ?? '',
-        location: location ?? {},
-        photoUrl: url,
-        photoId
-      })
-    );
-  };
+  // const doSomething = (): void => {
+  //   dispatch(
+  //     setSelectedPhoto({
+  //       author: photoData?.author,
+  //       species: photoData?.species,
+  //       description: photoData?.description ?? '',
+  //       location: photoData?.location ?? {},
+  //       photoUrl: photoData?.photoUrl,
+  //       photoId: photoData?.photoId
+  //     })
+  //   );
+  // };
 
-  const getAverage = (array: number[]): number => {
-    // shorter:
-    // a = accumulator, b = current value
-    const sum = array.reduce((a, b) => a + b, 0);
-    // divide sum by amount of numbers
-    return Math.round(sum / array.length);
-  };
+  // const getAverage = (array: number[]): number => {
+  //   // shorter:
+  //   // a = accumulator, b = current value
+  //   const sum = array.reduce((a, b) => a + b, 0);
+  //   // divide sum by amount of numbers
+  //   return Math.round(sum / array.length);
+  // };
 
   // TODO: lifecycle hooks - dokumentacja reacta
   // useEffect(() => {
@@ -72,10 +64,10 @@ export const MediaCard: React.FC<MediaCardProps> = ({
         maxWidth: '100%',
         margin: '0.5rem'
       }}>
-      <Link onClick={(): void => doSomething()} to={`/details/${photoId}`}>
+      <Link onClick={(): void => showCardDetails()} to={`/details/${photoData?.photoId}`}>
         <div className={classes.overlayContainer}>
           <div className={classes.overlay}></div>
-          <CardMedia component="img" image={url} />
+          <CardMedia component="img" image={photoData?.photoUrl} />
         </div>
       </Link>
       <Rating
@@ -83,8 +75,8 @@ export const MediaCard: React.FC<MediaCardProps> = ({
         value={photoData?.avgValue}
         // newValue otrzymujemy jako null | number, value jest jako number
         onChange={(event, newValue) => {
-          if (typeof newValue === 'number') {
-            dispatch(setRating({ photoId: photoId, value: newValue }));
+          if (typeof newValue === 'number' && !!photoData?.photoId) {
+            dispatch(setRating({ photoId: photoData?.photoId, value: newValue }));
           }
         }}
         sx={{

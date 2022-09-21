@@ -7,9 +7,7 @@ export function createSelect(theme: Theme): Pick<Components, 'MuiSelect'> {
         // The props to change the default for.
         autoWidth: true,
         // defaultOpen: false
-        inputProps: {
-
-        }
+        inputProps: {}
       },
       styleOverrides: {
         // Name of the slot
@@ -17,11 +15,9 @@ export function createSelect(theme: Theme): Pick<Components, 'MuiSelect'> {
         select: {
           // Some CSS
           // fontSize: '1rem',
-          width: '200px',
-          height: '46px'
-        },
-        
-      },
+          width: '100%'
+        }
+      }
     }
   };
 }

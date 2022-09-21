@@ -5,10 +5,10 @@ export const RatingFilter: React.FC = () => {
   const [rating, setRating] = useState('');
 
   return (
-    <FormControl>
+    <FormControl sx={{ width: '100%' }}>
       <InputLabel id="rating-select-helper-label">Rating</InputLabel>
       <Select
-        autoWidth={true}
+        autoWidth={false}
         labelId="rating-select-helper-label"
         id="rating-select"
         label="rating"
