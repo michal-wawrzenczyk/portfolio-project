@@ -9,3 +9,7 @@ export const WEB_PATHS = {
   page404: '/error-404',
   page500: '/error-500'
 };
+
+// /province/kujawsko-pomorskie -> ?province="x"&"photographer-name"...
+// http://localhost:3000/province/lubelskie
+// http://localhost:3000?province=lubelskie&rating=

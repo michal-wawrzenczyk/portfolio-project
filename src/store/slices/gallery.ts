@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Provinces } from '../../app/components/main/filter/province';
-import { DUMMY_PHOTOS } from '../../app/components/mock/mock';
+import { Province } from '../../app/components/filter/filters/province';
+import { DUMMY_PHOTOS } from '../../assets/mock';
 import { PhotosData } from '../../app/types/photos-data';
 
 export enum Categories {
@@ -17,7 +17,7 @@ export interface Ifilters {
   species: string;
   rating: number | null;
   category: Categories;
-  province: Provinces;
+  province: Province;
 }
 
 // Define a type for the slice state:
@@ -35,9 +35,12 @@ export interface SelectedPhoto {
   photoId: number;
   description?: string;
   location?: PhotosData['location'];
+  avgValue: PhotosData['avgValue'];
+  ratingValues: PhotosData['ratingValues'];
 }
 
 // Define the initial state using that defined type:
+// do przerobienia - loader i async function
 const initialGalleryState: GalleryStateInterface = {
   gallery: DUMMY_PHOTOS,
   showGallery: true,
@@ -46,14 +49,16 @@ const initialGalleryState: GalleryStateInterface = {
     species: '',
     rating: null,
     category: Categories.ALL_PICTURES,
-    province: Provinces.None
+    province: Province.None
   },
   selectedPhoto: {
     author: '',
     description: '',
     photoUrl: '',
     photoId: 0,
-    species: ''
+    species: '',
+    avgValue: 0,
+    ratingValues: []
   }
 };
 
@@ -77,6 +82,16 @@ const gallerySlice = createSlice({
         state.filters = action.payload;
       }
     },
+    clearFilters(state: GalleryStateInterface): void {
+      state.gallery = DUMMY_PHOTOS;
+      state.filters = {
+        author: '',
+        species: '',
+        rating: null,
+        category: Categories.ALL_PICTURES,
+        province: Province.None
+      };
+    },
     setSelectedPhoto(
       state: GalleryStateInterface,
       action: PayloadAction<SelectedPhoto>
@@ -84,11 +99,49 @@ const gallerySlice = createSlice({
       if (action.payload) {
         state.selectedPhoto = action.payload;
       }
+    },
+    setRating(
+      state: GalleryStateInterface,
+      action: PayloadAction<{
+        photoId: number;
+        value: number;
+      }>
+    ): void {
+      // const photoDetail = state.gallery.find(photo => photo.photoId === photoId)
+      console.log('akcja setRating');
+      const mappedPhotoData = state.gallery
+        .map((photoData) =>
+          photoData.photoId === action.payload.photoId
+            ? {
+                ...photoData,
+                ratingValues: [...photoData.ratingValues, action.payload.value]
+              }
+            : photoData
+        )
+        .map((photoData) =>
+          photoData.photoId === action.payload.photoId
+            ? {
+                ...photoData,
+                avgValue: Math.round(
+                  photoData.ratingValues.reduce((a, b) => a + b, 0) /
+                    photoData.ratingValues.length
+                )
+              }
+            : photoData
+        );
+
+      state.gallery = mappedPhotoData;
     }
   }
 });
 
 const { actions, reducer: galleryReducer } = gallerySlice;
 
-export const { setFilteredPhotos, setFilters, setSelectedPhoto } = actions;
+export const {
+  setFilteredPhotos,
+  setFilters,
+  setSelectedPhoto,
+  clearFilters,
+  setRating
+} = actions;
 export default galleryReducer;
