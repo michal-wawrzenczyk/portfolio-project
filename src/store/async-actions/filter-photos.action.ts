@@ -13,7 +13,8 @@ const getFilteredData = ({
   category,
   province,
   author,
-  species
+  species,
+  rating
 }: Ifilters): Promise<PhotosData[]> => {
   let data = [...DUMMY_PHOTOS];
 
@@ -46,6 +47,13 @@ const getFilteredData = ({
       });
     }
 
+    if (rating) {
+      data = data.filter((picture) => {
+        console.log('rating', rating);
+        return picture.avgValue === rating;
+      });
+    }
+
     return setTimeout(() => resolve(data), Math.random() * 2000);
     // reject state can be
   });
@@ -55,7 +63,7 @@ const getFilteredData = ({
 export const filterPhotosAction = (filters: Ifilters): AppThunkAction => {
   return async function thunk(dispatch): Promise<void> {
     try {
-      console.log('filterPhotosAction filters', filters)
+      console.log('filterPhotosAction filters', filters);
       const filteredData = await getFilteredData(filters);
       dispatch(setFilteredPhotos(filteredData));
       dispatch(setFilters(filters));
